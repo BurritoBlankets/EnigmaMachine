@@ -4,31 +4,23 @@
  * Version: 0.1 (Mar 07, 2023)
  *
  * Purpose:
- *          A nifty program that encrypts and decrypts messages
+ *          A nifty program that encrypts and decrypts messages. This branch
+ *          replicates the early analog function of the Enigma machine.
  *
  * To Do List:
- *          []Review how we encrypt our message
- *          []Allow users to set encoding passphrase (currently, the encryptor
- *            function outputs the same encrypted phrase if the user types the
- *            same message)
- *          []Create menu Screen that allows to user to choose to encrypt or
- *            decrypt
- *          []Find a legal way to allow user to type more than 100 char message
- *            without giving too much memory to our code
- *          []Implement file input/output (i/o) to encrypt and decrypt messages
- *            to a text file, which the code (depending on what we decide) can
- *            use as an argument
+ *          *Please read the webpage cited in the reference section*
+ *          []Create a three rotor device with each rotor containing 26 positi-
+ *              ons
+ *          []Create a switch board function
+ *          []Create a decryption method
+ *          []Fine tune
  *
  * Notes:
- *          °Please add comments that convey your thought process
- *          °Please use standard C coding conventions:
- *               i) snake_case variable and function names
- *              ii) use brackets for "for" loops (even if the code is one line)
- *          °Don't be afraid to make longer variable names to more easily
- *           explain its purpose
- *              Ex. "int length" -> "int message_length"
+ *          °Currently creating a three rotor device with each rotor equipped
+ *          with 26 positions for each letter of the alphabet
  *
- * Reffrences:
+ * References:
+ *          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
  *
  *
  *****************************************************************************/
@@ -39,85 +31,92 @@
 #include<string.h>
 //strlen function
 
-#include <stdlib.h>
-#include <time.h>
-//to call and seed random function
-
 
 //Function to Encrypt message
-void encryptor(char *message);
+void string_formatter( char *message);
 
 
-int main()
+void string_int_print( char *message )
+{
+    int message_length = strlen(message);
+    for(int i = 0; i < message_length; i++)
+    {
+        printf(" %d", message[i]);
+    }
+}
+
+
+void string_char_print( char *message )
+{
+    int message_length = strlen(message);
+    for(int i = 0; i < message_length; i++)
+    {
+        printf(" %c", message[i]);
+    }
+}
+
+
+int main( void )
 {
     char message[100];
     //var to get user message
 
     printf("Enter message: ");
-    scanf(" %s", message);
+    scanf("%[^\n]", message);
     //gets user message
 
-    encryptor(message);
+    string_formatter(message);
     //encrypts user message
+    string_char_print(message);
+    string_int_print(message);
+
+
 
     return 0;
 }
 
 
 //Function to Encrypt message
-void encryptor(char *message)
+void string_formatter(char *message)
 {
-    int message_length, random[100];
-    //random[100] is for array to randomize 100 positions for message (100 pos-
-    //itions)
-
-    srand(1);
-
-    message_length = strlen(message);
-    //find string
-
+    int message_length = strlen(message);
 
     for(int i = 0; i < message_length; i++)
     {
-        random[i] = (rand()%58+65);
-    }
-    //for every character in the user message generate a random number between
-    //58-123
-
-
-    for(int i = 0; i < message_length; i++)
-    {
-        printf("%d ", message[i]);
-
-        if (message[i] >= random[i])
+        if (message[i] >= 97 || message[i] <= 122 )
         {
-            message[i] = (message[i] - random[i]) + 65;
+            message[i] = message[i] - 32;
         }
-        else if (message[i] < random[i])
+        else if (message[i] >= 65 || message[i] <= 90 )
         {
-            message[i] = (random[i] - message[i]) + 65;
+            message[i] = message[i] - 32;
+        }
+        else if (message[i] == 32)
+        {
+            message[i] = 'a';
         }
     }
-    //for every character in the user message...Whats going on here? Why not
-    //utlilize if statements to set a range of 65-122 (ASCII A-z) in place of
-    //comparing the users message ASCII value to a random generated int?
-
-    printf("|| ");
-
-    for(int i = 0; i < message_length; i++)
-    {
-        printf(" %d ", (random[i]));
-    }
-    //prints out random array numbers utilized to encrypt user message
-
-    printf("|| ");
-
-    for(int i = 0; i < message_length; i++)
-    {
-        printf(" %d ", message[i]);
-    }
-    //prints out encrypted user message (ASCII numbers)
-
-    printf(" %s\n", message);
-    //prints out encrypted user message (Alphabet)
+    //for every index in the user message check...
+    //if the element is a lowercase. If so, change ASCII value to its uppercase
+    //if the element is a uppercase. If so, do nothing
+    //if the element is not a letter. If so, change value to an underscore
+//
+//    printf("|| ");
+//
+//    for(int i = 0; i < message_length; i++)
+//    {
+//        printf(" %d ", (random[i]));
+//    }
+//    //prints out random array numbers utilized to encrypt user message
+//
+//    printf("|| ");
+//
+//    for(int i = 0; i < message_length; i++)
+//    {
+//        printf(" %d ", message[i]);
+//    }
+//    //prints out encrypted user message (ASCII numbers)
+//
+//    printf(" %s\n", message);
+//    //prints out encrypted user message (Alphabet)
 }
