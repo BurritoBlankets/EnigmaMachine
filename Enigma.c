@@ -1,14 +1,14 @@
 /******************************************************************************
  * File:    enigma_proj.c
- * Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
- * Version: 0.1 (Mar 07, 2023)
- *
+ * Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler (T-Dawg) Bruno
+ * Version: 0.15 (Mar 18, 2023)
+
  * Purpose:
  *          A nifty program that encrypts and decrypts messages. This branch
  *          replicates the early analog function of the Enigma machine.
  *
  * To Do List:
- *          *Please read the webpage cited in the reference section*
+ *          *Please read the website by theguardian cited in the references*
  *          []Create a three rotor device with each rotor containing 26 positi-
  *              ons
  *          []Create a switch board function
@@ -21,6 +21,7 @@
  *
  * References:
  *          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
+ *          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
  *
  *
  *****************************************************************************/
@@ -28,95 +29,77 @@
 #include <stdio.h>
 //basic i/o functions
 
-#include<string.h>
+#include <string.h>
 //strlen function
+
+#include <ctype.h>
 
 
 //Function to Encrypt message
 void string_formatter( char *message);
-
-
-void string_int_print( char *message )
-{
-    int message_length = strlen(message);
-    for(int i = 0; i < message_length; i++)
-    {
-        printf(" %d", message[i]);
-    }
-}
-
-
-void string_char_print( char *message )
-{
-    int message_length = strlen(message);
-    for(int i = 0; i < message_length; i++)
-    {
-        printf(" %c", message[i]);
-    }
-}
-
 
 int main( void )
 {
     char message[100];
     //var to get user message
 
-    printf("Enter message: ");
-    scanf("%[^\n]", message);
-    //gets user message
+    printf("Message:\n");
+    scanf("%[^\n]", &*message);
+    //gets user message (had to do the weird %[^\n] thing, because C would stop
+    //reading in user input after the first space, when the %s alias was used)
 
     string_formatter(message);
-    //encrypts user message
-    string_char_print(message);
-    string_int_print(message);
 
-
+    printf("Formatted Message:\n%s", message);
 
     return 0;
 }
 
 
-//Function to Encrypt message
+//Function to format user message: reformats users message to remove all spaces
+//numbers and special characters, and to change all lowercase letters uppercase
+//. Although this limits the capabilities of the program, it mimics the original
+//enigma machine, and makes the program easier to code
 void string_formatter(char *message)
 {
-    int message_length = strlen(message);
+    int new_total_index = 0;
+    //var used to reformat string array, whatever value assigned after the for
+    //loop will be the new total number of indices in the string array
 
-    for(int i = 0; i < message_length; i++)
+
+    //Removes spaces from user string
+    for(int i = 0; message[i] != '\0'; i++)
     {
-        if (message[i] >= 97 || message[i] <= 122 )
+        if (message[i] != ' ')
         {
-            message[i] = message[i] - 32;
-        }
-        else if (message[i] >= 65 || message[i] <= 90 )
-        {
-            message[i] = message[i] - 32;
-        }
-        else if (message[i] == 32)
-        {
-            message[i] = 'a';
+            message[new_total_index] = message[i];
+            new_total_index++;
         }
     }
-    //for every index in the user message check...
-    //if the element is a lowercase. If so, change ASCII value to its uppercase
-    //if the element is a uppercase. If so, do nothing
-    //if the element is not a letter. If so, change value to an underscore
-//
-//    printf("|| ");
-//
-//    for(int i = 0; i < message_length; i++)
-//    {
-//        printf(" %d ", (random[i]));
-//    }
-//    //prints out random array numbers utilized to encrypt user message
-//
-//    printf("|| ");
-//
-//    for(int i = 0; i < message_length; i++)
-//    {
-//        printf(" %d ", message[i]);
-//    }
-//    //prints out encrypted user message (ASCII numbers)
-//
-//    printf(" %s\n", message);
-//    //prints out encrypted user message (Alphabet)
+    message[new_total_index] = '\0';
+    //appends null character to end of reformated string
+
+
+    //Removes numbers from user string
+    new_total_index = 0;
+    for(int i = 0; message[i] != '\0'; i++)
+    {
+        if (0 == isdigit(message[i]))
+        {
+            message[new_total_index] = message[i];
+            new_total_index++;
+        }
+    }
+    message[new_total_index] = '\0';
+    //appends null character to end of reformated string
+
+
+    //Makes all letters uppercase
+    for(int i = 0; message[i] != '\0'; i++)
+    {
+        if (0 == isdigit(message[i]))
+        {
+            message[i]=toupper(message[i]);
+        }
+    }
 }
