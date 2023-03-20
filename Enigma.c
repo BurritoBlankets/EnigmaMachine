@@ -8,21 +8,32 @@
  *          replicates the early analog function of the Enigma machine.
  *
  * To Do List:
- *          *Please read the website by theguardian cited in the references*
- *          []Create a three rotor device with each rotor containing 26 positi-
- *              ons
+ *          *Please read the website by 101computing and the guardian cited in
+ *          the references section
+ *
+ *          []Get user input:
+ *              1)  Get user message
+ *              2)  Set rotor positions
+ *              3)  Set switchboard <<<CURRENTLY WORKING ON THIS
+ *
+ *          []Create a three rotor function
  *          []Create a switch board function
+ *          []Implement deflector function
+ *
  *          []Create a decryption method
  *          []Fine tune
  *
  * Notes:
- *          °Currently creating a three rotor device with each rotor equipped
- *          with 26 positions for each letter of the alphabet
+ *          °Finished step 2 on getting user input. Currently there is a bug
+ *          that will skip reading in the user
  *
  * References:
+ *          How The Enigma Works:
+ *          °https://www.101computing.net/enigma/enigma-instructions.html
  *          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
- *          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
  *
+ *          Code Help:
+ *          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
  *
  *****************************************************************************/
 
@@ -34,14 +45,19 @@
 
 #include <ctype.h>
 
+#include <stdlib.h>
+//malloc function
+
 
 //Function to Encrypt message
 void string_formatter( char *message);
+char * set_rotor_positions( void );
 
 int main( void )
 {
     char message[100];
-    //var to get user message
+    char *rotor_positions = set_rotor_positions();
+    //var to get user message along with rotor position
 
     printf("Message:\n");
     scanf("%[^\n]", &*message);
@@ -50,16 +66,18 @@ int main( void )
 
     string_formatter(message);
 
-    printf("Formatted Message:\n%s", message);
+    for (int i = 0; i <= 2; i++) {
+        printf("%d\n", rotor_positions[i]);
+    }
 
-    return 0;
+    free(rotor_positions);
 }
 
 
 //Function to format user message: reformats users message to remove all spaces
 //numbers and special characters, and to change all lowercase letters uppercase
-//. Although this limits the capabilities of the program, it mimics the original
-//enigma machine, and makes the program easier to code
+//Although this limits the capabilities of the program, it mimics the
+//original enigma machine, and makes the program easier to code.
 void string_formatter(char *message)
 {
     int new_total_index = 0;
@@ -93,7 +111,6 @@ void string_formatter(char *message)
     message[new_total_index] = '\0';
     //appends null character to end of reformated string
 
-
     //Makes all letters uppercase
     for(int i = 0; message[i] != '\0'; i++)
     {
@@ -102,4 +119,25 @@ void string_formatter(char *message)
             message[i]=toupper(message[i]);
         }
     }
+}
+
+
+//Function to set all three rotor positions based on alphabet
+char * set_rotor_positions( void )
+{
+    char *position=malloc(4);
+    for(int i = 0; i <= 2; i++)
+    {
+        do
+        {
+        printf("Rotor Position %d:\n", i+1);
+        scanf(" %c", &position[i]);
+        }
+        while(1 == isdigit(position[i]));
+
+        position[i] = toupper(position[i])-65;
+    }
+    position[3] = '\0';
+
+    return position;
 }
