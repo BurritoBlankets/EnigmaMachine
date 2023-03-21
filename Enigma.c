@@ -34,6 +34,9 @@
  *
  *          Code Help:
  *          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
+ *      
+ *          Hard Wire Rotors:
+ *          °https://hackaday.com/2017/08/22/the-enigma-enigma-how-the-enigma-machine-worked/
  *
  *****************************************************************************/
 
