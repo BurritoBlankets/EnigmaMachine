@@ -11,14 +11,14 @@
  *          *Please read the website by 101computing and the guardian cited in
  *          the references section
  *
- *          []Get user input:
+ *          [X]Get user input:
  *              1)  Get user message
  *              2)  Set rotor positions
- *              3)  Set switchboard <<<CURRENTLY WORKING ON THIS
+ *              3)  Set switchboard (skipping for now)
  *
- *          []Create a three rotor function
- *          []Create a switch board function
+ *          []Create a three rotor function <<< CURRENTLY WORKING ON THIS
  *          []Implement deflector function
+ *          []Create a switch board function (up for review)
  *
  *          []Create a decryption method
  *          []Fine tune
@@ -56,7 +56,8 @@ char * set_rotor_positions( void );
 int main( void )
 {
     char message[100];
-    char *rotor_positions = set_rotor_positions();
+    char *rotor_positions;
+    char r_pos[3];
     //var to get user message along with rotor position
 
     printf("Message:\n");
@@ -64,10 +65,19 @@ int main( void )
     //gets user message (had to do the weird %[^\n] thing, because C would stop
     //reading in user input after the first space, when the %s alias was used)
 
+    rotor_positions = set_rotor_positions();
+    //gets rotor position (since we are allocating mem, whatever we want to
+    //do with the rotor positions has to be sandwich inbetween the command
+    //above and "free(rotor_position)"
+
+
     string_formatter(message);
+    //reformats user message to make it easier to work with
+
+    printf("Formated Message:\n%s\n", message);
 
     for (int i = 0; i <= 2; i++) {
-        printf("%d\n", rotor_positions[i]);
+        printf("Rotor %d is: %d\n", i, rotor_positions[i]);
     }
 
     free(rotor_positions);
@@ -133,7 +143,7 @@ char * set_rotor_positions( void )
         printf("Rotor Position %d:\n", i+1);
         scanf(" %c", &position[i]);
         }
-        while(1 == isdigit(position[i]));
+        while(0 == isalpha(position[i]));
 
         position[i] = toupper(position[i])-65;
     }
