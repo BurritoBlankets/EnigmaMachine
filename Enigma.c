@@ -38,6 +38,9 @@
  *          Hard Wire Rotors:
  *          °https://hackaday.com/2017/08/22/the-enigma-enigma-how-the-enigma-machine-worked/
  *
+ *          Rotor Sheet:
+ *          °https://docs.google.com/spreadsheets/d/e/2PACX-1vRmON5SRXPrnoQghaJSrhbBFFNYLnJjPQOt1hKbfr99q6gwbxfU4B8qUEQg2Z-3A3x3OpXpFWCoSvqL/pubhtml
+ *
  *****************************************************************************/
 
 #include <stdio.h>
