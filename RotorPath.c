@@ -89,6 +89,12 @@ int main()
     // The Rotor spinning 26 times
    
 
+        
+        int Test, Test2;
+    Test = * RotorPath[0][0] - 65;
+    printf("%d\n", Test);
+    Test2 = * RotorPath[1][Test] - 65;
+    printf("%d\n", Test2);
  
   return 0;
 }
