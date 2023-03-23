@@ -69,10 +69,27 @@ int main()
     }
     // The Rotor spinning 26 times
    
+        
+    // Code below moves from letter to letter through rotors and spits back final letter
 
-int Test, Test2;
-    Test = * RotorPath[0][0] - 65;
-    printf("%d\n", Test);
-    Test2 = * RotorPath[1][Test] - 65;
-    printf("%d\n", Test2);
+    int rot3,rot3_2, rot2, rot2_2,rot1, rot1_2,refl;
     
+    
+    rot3 = * RotorPath[2][0] - 65;
+    printf("%d\n", rot3);
+    rot2 = * RotorPath[1][rot3] - 65;
+    printf("%d\n", rot2);
+    rot1 = * RotorPath[0][rot2] - 65;
+    printf("%d\n", rot1);
+    refl = * RotorPath[3][rot1] - 65;
+    printf("%d\n", refl);
+    rot1_2 = * RotorPath[3][refl] - 65;
+    printf("%d\n", rot1_2);
+    rot2_2 = * RotorPath[3][rot1_2] - 65;
+    printf("%d\n", rot2_2);
+    rot3_2 = * RotorPath[3][rot2_2] - 65;
+    printf("%d\n", rot3_2);
+    char letter = rot3_2 + 65;
+    printf("%c", letter);
+  
+}
