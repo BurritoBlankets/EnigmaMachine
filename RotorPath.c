@@ -9,6 +9,10 @@
 *            and have the rotors change positions with each charactor in the 
 *            input message.
 *
+*  To-Do:
+*            Spin rotor after each character and every 26th turn rotor 2 turns
+*            and rotor 1 turns every 676 turns
+*
 *************************************************************/
 
 #include <stdio.h>
@@ -65,13 +69,15 @@ int main()
     int X = 0,Y = 0, Message_Length;
     char *store;
     
-    /*char Message[100];
+    char Message[100];
     
     printf("Message: ");
     scanf("%s" , &Message);
     
     Message_Length = strlen(Message);
-    */
+    // Finds length of message
+        
+        
     for (X = 0; X < 26; X++)
         printf("%s", RotorPath[0][X]);
         printf("\n");
@@ -80,7 +86,7 @@ int main()
         Rotor1Spin();
         printf("\n");
     }
-     
+    // The Rotor spinning 26 times
    
 
  
