@@ -16,11 +16,15 @@
  *              2)  Set rotor positions
  *              3)  Set switchboard (skipping for now)
  *
- *          []Create a three rotor function <<< CURRENTLY WORKING ON THIS
- *          []Implement deflector function
- *          []Create a switch board function (up for review)
+ *          []Create a three rotor and reflector function [Done]
+ *          []Create function to spin rotor 2 and 1 after respective spins <<< Focus
+ *          []Find a way to convert letters to numbers to send through array of rotors <<< Focus
+ *          []Complete encyption code by combining previous two steps
  *
- *          []Create a decryption method
+ *          []Implement code to set the rotor at the begining and automatically spin rotors to correct positions
+ *
+ *
+ *          []Create a switch board function (up for review)
  *          []Fine tune
  *
  * Notes:
