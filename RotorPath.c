@@ -100,7 +100,8 @@ int main()
         Rotor1Spin();
         printf("*******************************\n");
     }
-    // The Rotor spinning Thorugh All Combinations times
+    // The Rotor spinning Thorugh All Combinations times This code can be 
+    // used to set rotor positions at the start
    
     *********************************************************/
         
