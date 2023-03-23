@@ -82,7 +82,7 @@ void SetRotors(int R1,int R2,int R3)
     printf("------------------------------\n");
     for (X = 0; X < R3; X++)
                    Rotor3Spin();
-   // The Rotor spinning Thorugh All Combinations times
+   // Takes user input and spins the rotors to the correct amount of times before the message is recieved
 
 } 
  
