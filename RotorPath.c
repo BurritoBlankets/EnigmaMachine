@@ -73,15 +73,11 @@ void Rotor3Spin() // Spins Rotor 3 once
  
 int main() 
 {
-   
     int X = 0, Y = 0, Z = 0, Message_Length;
-   
-    
+        
     char Message[100];
-    
     printf("Message: ");
     scanf("%s" , &Message);
-    
     Message_Length = strlen(Message);
     // Finds length of message
         
