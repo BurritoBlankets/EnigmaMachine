@@ -101,6 +101,46 @@ int main()
    
     *********************************************************/
         
+   if (R1_Change > 0)
+   {
+       for(Z = 0; Z< R1_Change ; Z++) 
+       {
+           for (Y = 0; Y < R2_Change ; Y++)
+           {
+               for (X = 0; X < R3_Change; X++)
+               {
+                   Rotor3Spin();
+               }
+               Rotor2Spin();
+               printf("------------------------------\n");
+           }
+           Rotor1Spin();
+           printf("*******************************\n");
+       }
+   }
+   // Runs if Message is long enough the first rotor spins (more than 676 characters)
+   
+   if (R2_Change > 0); 
+   {
+       for (Y = 0; Y < R2_Change ; Y++)
+       {
+           for (X = 0; X <= R3_Change; X++)
+           {
+                Rotor3Spin();
+           }
+           Rotor2Spin();
+           printf("------------------------------\n");
+       }
+   }
+   // Runs if Message is long enough the second rotor spins (more than 26 characters)
+   if (R3_Change < 26)
+   {
+       for (X = 0; X < R3_Change; X++)
+       {
+           Rotor3Spin();
+       }
+   }
+   // Runs if Message is smaller than 26 characters.
         
   return 0;
 }
