@@ -35,9 +35,11 @@
  *          How The Enigma Works:
  *          °https://www.101computing.net/enigma/enigma-instructions.html
  *          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
+ *          °https://www.101computing.net/enigma-machine-emulator/
  *
  *          Code Help:
  *          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
+ *          °https://codeforwin.org/c-programming/c-program-to-search-element-in-array
  *      
  *          Hard Wire Rotors:
  *          °https://hackaday.com/2017/08/22/the-enigma-enigma-how-the-enigma-machine-worked/
