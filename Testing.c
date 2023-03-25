@@ -10,7 +10,8 @@
 *            input message.
 *
 *  Note: When compiling use - std=c99
-*
+*       
+*        "MESSY CODE THAT WORKS"
 *************************************************************/
 
 #include <stdio.h>
