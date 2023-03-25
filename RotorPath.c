@@ -30,7 +30,7 @@ void PrintRotor(int j) // Prints what Current Rotor is.
             printf("\n");
 }
 
-void Rotor1Spin() // Spins Rotor 1 once
+void Rotor3Spin() // Spins Rotor 1 once
 {
     char *store;    
     store = RotorPath[0][25];
@@ -50,7 +50,7 @@ void Rotor2Spin() // Spins Rotor 2 once
         }
     RotorPath[1][0] = store;    
 }
-void Rotor3Spin() // Spins Rotor 3 once
+void Rotor1Spin() // Spins Rotor 3 once
 {
     char *store;    
     store = RotorPath[2][25];
