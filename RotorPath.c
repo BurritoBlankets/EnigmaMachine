@@ -9,10 +9,6 @@
 *            and have the rotors change positions with each charactor in the 
 *            input message.
 *
-*  To-Do:
-*            Spin rotor after each character and every 26th turn rotor 2 turns
-*            and rotor 1 turns every 676 turns
-*
 *  Note: When compiling use - std=c99
 *
 *************************************************************/
