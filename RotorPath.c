@@ -13,117 +13,113 @@
 *            Spin rotor after each character and every 26th turn rotor 2 turns
 *            and rotor 1 turns every 676 turns
 *
+*  Note: When compiling use - std=c99
+*
 *************************************************************/
 
 #include <stdio.h>
 #include <string.h>
 
+// Multidimensional array for the three rotors and reflector
 char *RotorPath[4][26] = {
-        {"K", "T", "N", "O", "R", "G", "Q", "L", "F", "D", "V", "P", "X", "W", "C", "E", "I", "Y", "M", "U", "Z", "S", "J", "A", "H", "B"},
-        {"K", "C", "L", "Q", "M", "S", "W", "H", "T", "J", "D", "N", "V", "O", "U", "X", "P", "G", "F", "A", "B", "E", "Y", "R", "Z", "I"},
-        {"F", "A", "C", "X", "V", "R", "M", "S", "U", "O", "Y", "T", "N", "I", "H", "D", "L", "E", "G", "W", "J", "K", "P", "Q", "Z", "B"},
-        {"I", "L", "W", "Z", "E", "C", "S", "X", "D", "O", "J", "H", "A", "F", "G", "V", "T", "M", "N", "K", "B", "P", "Q", "U", "Y", "R"}};
-        // Multidimensional array for the three rotors and reflector
+        {"F", "A", "C", "X", "V", "R", "M", "S", "U", "O", "Y", "T", "N", "I", "H", "D", "L", "E", "G", "W", "J", "K", "P", "Q", "Z", "B"},  //Rotor 3
+        {"K", "C", "L", "Q", "M", "S", "W", "H", "T", "J", "D", "N", "V", "O", "U", "X", "P", "G", "F", "A", "B", "E", "Y", "R", "Z", "I"},  //Rotor 2
+        {"K", "T", "N", "O", "R", "G", "Q", "L", "F", "D", "V", "P", "X", "W", "C", "E", "I", "Y", "M", "U", "Z", "S", "J", "A", "H", "B"},  //Rotor 1
+        {"I", "L", "W", "Z", "F", "E", "S", "X", "A", "O", "U", "B", "R", "Y", "J", "V", "T", "M", "G", "Q", "K", "P", "C", "H", "N", "D"}}; // Reflector
+
+void PrintRotor(int j) // Prints what Current Rotor is.
+{
+    for (int i = 0; i < 26; i++)
+            printf("%s", RotorPath[j][i]);
+            printf("\n");
+}
 
 void Rotor1Spin() // Spins Rotor 1 once
 {
-    char *store;
-    int X = 0;    
+    char *store;    
     store = RotorPath[0][25];
-        for (X = 25; X > 0; X--)
+        for (int i = 25; i > 0; i--)
         {
-            RotorPath[0][X] = RotorPath[0][X-1];
+            RotorPath[0][i] = RotorPath[0][i-1];
         }
-    RotorPath[0][0] = store;
-    
-    for (X = 0; X < 26; X++)
-        printf("%s", RotorPath[0][X]);
-        printf("\n");
+    RotorPath[0][0] = store; 
 }
 void Rotor2Spin() // Spins Rotor 2 once
 {
-    char *store;
-    int X = 0;    
+    char *store;  
     store = RotorPath[1][25];
-        for (X = 25; X > 0; X--)
+        for (int i = 25; i > 0; i--)
         {
-            RotorPath[1][X] = RotorPath[1][X-1];
+            RotorPath[1][i] = RotorPath[1][i-1];
         }
-    RotorPath[1][0] = store;
-    
-    for (X = 0; X < 26; X++)
-        printf("%s", RotorPath[1][X]);
-        printf("\n");
+    RotorPath[1][0] = store;    
 }
 void Rotor3Spin() // Spins Rotor 3 once
 {
-    char *store;
-    int X = 0;    
+    char *store;    
     store = RotorPath[2][25];
-        for (X = 25; X > 0; X--)
+        for (int i = 25; i > 0; i--)
         {
-            RotorPath[2][X] = RotorPath[2][X-1];
+            RotorPath[2][i] = RotorPath[2][i-1];
         }
-    RotorPath[2][0] = store;
-    
-    for (X = 0; X < 26; X++)
-        printf("%s", RotorPath[2][X]);
-        printf("\n");
+    RotorPath[2][0] = store;    
 }
 
-void SetRotors(int R1,int R2,int R3)
+void SetRotors(int R1,int R2,int R3) // Takes user input and spins the rotors to the correct amount of times before the message is recieved
 {
-    int X = 0,Y = 0, Z = 0;
-    for(Z = 0; Z< R1 ; Z++) 
+    for(int i = 0; i < R1 ; i++) 
+    {    
         Rotor1Spin();
+    }
     printf("*******************************\n");
-    for (Y = 0; Y < R2 ; Y++)
-               Rotor2Spin();
+    
+    for (int i = 0; i < R2 ; i++)
+    {
+        Rotor2Spin();
+    }
     printf("------------------------------\n");
-    for (X = 0; X < R3; X++)
-                   Rotor3Spin();
-   // Takes user input and spins the rotors to the correct amount of times before the message is recieved
-
+    
+    for (int i = 0; i < R3 ; i++)
+    {
+        Rotor3Spin();
+    }     
 } 
  
 int main() 
 {
    
-    int X = 0,Y = 0, Z = 0, Message_Length;
-    
+    int Message_Length, R3_Change, R2_Change, R1_Change;
+    // Setting Rotors
     char R1,R2,R3;
+    printf("Set rotor positions (A-Z): ");
     scanf(" %c",&R1);
     scanf(" %c",&R2);
     scanf(" %c",&R3);
     SetRotors(R1-65,R2-65,R3-65);
     
-    // Setting Rotors
     
+    // Finds length of message
     char Message[1000];
-    
     printf("Message: ");
     scanf("%s" , &Message);
-    
     Message_Length = strlen(Message);
-    // Finds length of message
     
-    int R3_Change;
+    // Values to check how many times the upper rotors spin
+    R1_Change = Message_Length/676;
+    R2_Change = Message_Length/26;
     if (Message_Length > 26)
         R3_Change = 25;
     else 
         R3_Change = Message_Length;
-    int R2_Change = Message_Length/26;
-    int R1_Change = Message_Length/676;
-    // Values to check how many times the upper rotors spin
    
-   
+   // Runs if Message is long enough the first rotor spins (more than 676 characters)
    if (R1_Change > 0)
    {
-       for(Z = 0; Z< R1_Change ; Z++) 
+       for(int k = 0; k< R1_Change ; k++) 
        {
-           for (Y = 0; Y < R2_Change ; Y++)
+           for (int j = 0; j < R2_Change ; j++)
            {
-               for (X = 0; X < R3_Change; X++)
+               for (int i = 0; i < R3_Change; i++)
                {
                    Rotor3Spin();
                }
@@ -134,13 +130,12 @@ int main()
            printf("*******************************\n");
        }
    }
-   // Runs if Message is long enough the first rotor spins (more than 676 characters)
-   
+   // Runs if Message is long enough the second rotor spins (more than 26 characters)
    if (R2_Change > 0); 
    {
-       for (Y = 0; Y < R2_Change ; Y++)
+       for (int j = 0; j < R2_Change ; j++)
        {
-           for (X = 0; X <= R3_Change; X++)
+           for (int i = 0; i <= R3_Change; i++)
            {
                 Rotor3Spin();
            }
@@ -148,15 +143,13 @@ int main()
            printf("------------------------------\n");
        }
    }
-   // Runs if Message is long enough the second rotor spins (more than 26 characters)
+   // Runs if Message is smaller than 26 characters.
    if (R3_Change < 26)
    {
-       for (X = 0; X < R3_Change; X++)
+       for (int i = 0; i < R3_Change; i++)
        {
            Rotor3Spin();
        }
    }
-   // Runs if Message is smaller than 26 characters.
-   
   return 0;
 }
