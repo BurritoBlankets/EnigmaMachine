@@ -1,4 +1,5 @@
 /************************************************************
+*  Most Complete Version DO NOT edit to test things, make a copy
 *
 *  File: EnigmaMachine.c
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
@@ -12,7 +13,7 @@
 *     
 *
 *  Note: When compiling use - std=c99
-*
+*  
 *        
 *************************************************************/
 
