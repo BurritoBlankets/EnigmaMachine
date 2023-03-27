@@ -1,8 +1,8 @@
 /************************************************************
 *
-*  File: RotorMovement.g
+*  File: RotorMovement.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.90 (Mar 25, 2023)
+*  Version: 0.10 (Mar 22, 2023)
 *  
 *  Purpose: 
 *            A file of multiple functions that will store the rotor order and
@@ -14,14 +14,14 @@
 #include <string.h>
 #include "RotorWiring.h"
 
-void PrintRotor(int j) // Prints what Current Rotor is.
+void PrintRotor(int j) // Prints what Current Rotor is -- For Debugging
 {
     for (int i = 0; i < 26; i++)
             printf("%s", RotorPath[j][i]);
             printf("\n");
 }
 
-void Rotor1Spin() // Spins Rotor 1 once
+void Rotor3Spin() // Spins Rotor 1 once
 {
     char *store;    
     store = RotorPath[0][25];
@@ -41,7 +41,7 @@ void Rotor2Spin() // Spins Rotor 2 once
         }
     RotorPath[1][0] = store;    
 }
-void Rotor3Spin() // Spins Rotor 3 once
+void Rotor1Spin() // Spins Rotor 3 once
 {
     char *store;    
     store = RotorPath[2][25];
@@ -54,19 +54,19 @@ void Rotor3Spin() // Spins Rotor 3 once
 
 void SetRotors(int R1,int R2,int R3) // Takes user input and spins the rotors to the correct amount of times before the message is recieved
 {
-    for(int i = 0; i < R1 ; i++) 
-    {    
+    for(int i = 0; i < R1 - 65 ; i++)
+    {
         Rotor1Spin();
     }
-    
-    for (int i = 0; i < R2 ; i++)
+
+    for (int i = 0; i < R2 - 65 ; i++)
     {
         Rotor2Spin();
     }
-    
-    for (int i = 0; i < R3 ; i++)
+
+    for (int i = 0; i < R3 -65 ; i++)
     {
         Rotor3Spin();
-    }     
-} 
+    }
+}
  
