@@ -2,7 +2,7 @@
 *
 *  File: MessageEncryption.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.20(Mar 24, 2023)
+*  Version: 0.90(Mar 26, 2023)
 *  
 * Purpose: 
 *            Contains the function to encrypt and decrypt messages. 
