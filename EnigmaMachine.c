@@ -10,11 +10,25 @@
 *            that same encrypted message you received can dycrypt your message.
 *            Makes use of three hardwired rotors to encrypt and decrypt messages
 *            and at the same time the same input will not be the same output.
-*     
-*
-*  Note: When compiling use - std=c99
 *  
 *        
+* References:
+*          How The Enigma Works:
+*          °https://www.101computing.net/enigma/enigma-instructions.html
+*          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
+*          °https://www.101computing.net/enigma-machine-emulator/
+*          °https://hackaday.com/2017/08/22/the-enigma-enigma-how-the-enigma-machine-worked/
+*          
+*
+*          Code Help:
+*          °https://www.educative.io/answers/how-to-remove-spaces-from-a-string-in-c
+*          °https://codeforwin.org/c-programming/c-program-to-search-element-in-array
+*      
+*          Custom Rotor Wiring Sheet:
+*          °https://docs.google.com/spreadsheets/d/e/2PACX-1vRmON5SRXPrnoQghaJSrhbBFFNYLnJjPQOt1hKbfr99q6gwbxfU4B8qUEQg2Z-3A3x3OpXpFWCoSvqL/pubhtml
+*
+*
+*  Note: When compiling use - std=c99
 *************************************************************/
 
 #include <stdio.h>
