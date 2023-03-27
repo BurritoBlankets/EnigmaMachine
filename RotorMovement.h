@@ -2,7 +2,7 @@
 *
 *  File: RotorMovement.g
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.10 (Mar 22, 2023)
+*  Version: 0.90 (Mar 25, 2023)
 *  
 *  Purpose: 
 *            A file of multiple functions that will store the rotor order and
