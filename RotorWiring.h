@@ -1,6 +1,6 @@
 /************************************************************
 *
-*  File: RotorPath.c
+*  File: RotorWiring.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
 *  Version: 1.0 (Mar 25, 2023)
 *  
