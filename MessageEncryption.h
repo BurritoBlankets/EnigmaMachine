@@ -44,9 +44,9 @@ void CharacterEncryption(int input) //Function to send a character through the r
 
 }
 
-void MessageEncryption(char *Message)
+void MessageEncryption(char *Message, char R3,  char R2)
 {
-    int Message_Length = 0, Count1 = 0, Count2 = 0;
+    int Message_Length = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65;
     // Finds Length of the input message
     for(int i = 0; Message[i] != '\0'; i++)
     {
@@ -57,16 +57,16 @@ void MessageEncryption(char *Message)
     {
         CharacterEncryption(Message[i] - 65);
         Rotor3Spin();
-        Count1++;
-        if (Count1 == 26)
+        CountR3++;
+        if (CountR3 == 26)
         {
-            Count1 = 0;
+            CountR3 = 0;
             Rotor2Spin();
-            Count2 ++;
+            CountR2 ++;
         }
-        if (Count2 == 26)
+        if (CountR2 == 26)
         {
-            Count2 = 0;
+            CountR2 = 0;
             Rotor1Spin();
         }
     }
