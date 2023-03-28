@@ -2,24 +2,25 @@
 *
 *  File: MessageEncryption.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.20(Mar 24, 2023)
-*
-* Purpose:
-*            Contains the function to encrypt and decrypt messages.
+*  Version: 1.0(Mar 28, 2023)
+*  
+* Purpose: 
+*            Contains the function to encrypt and decrypt messages. 
 *
 *
 *************************************************************/
+
 #pragma once
 #include <stdio.h>
 #include <string.h>
 #include "RotorMovement.h"
 
-void CharacterEncryption(int input) //Function to send a character through the rotors and back and receive decrypted character
+char CharacterEncryption(int input) //Function to send a character through the rotors and back and receive decrypted character
 {
-    char encrypted_message_string[1000];
+    // Character -> 3 -> 2 -> 1 -> Reflector -> 1 -> 2 -> 3 -> Encrypted Character
     int temp;
     temp = input;
-    for (int i = 0; i <= 3; i++)
+    for (int i = 0; i <= 3; i++) 
     {
         temp = * RotorPath[i][temp] - 65;
 
@@ -35,18 +36,16 @@ void CharacterEncryption(int input) //Function to send a character through the r
                 break;
             }
         }
-
     }
-
-    FILE* file=fopen("EnigmaTranscript.txt","a");
-
-    printf("%c", temp + 65);
-
+    temp = temp + 65;
+    return temp;
 }
 
-void MessageEncryption(char *Message, char R3,  char R2)
+char MessageEncryption(char *Message, char R3,  char R2)
 {
+    FILE* file=fopen("EnigmaTranscript.txt","a");
     int Message_Length = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65;
+    char EncryptedMessage[1000];
     // Finds Length of the input message
     for(int i = 0; Message[i] != '\0'; i++)
     {
@@ -55,20 +54,24 @@ void MessageEncryption(char *Message, char R3,  char R2)
     //Encrypts or Decrypts the message the user input
     for(int i = 0; i < Message_Length; i++)
     {
-        CharacterEncryption(Message[i] - 65);
+        EncryptedMessage[i] = CharacterEncryption(Message[i] - 65);
+        printf("%c", EncryptedMessage[i]);
+        fprintf(file, "%c", EncryptedMessage[i]);
         Rotor3Spin();
         CountR3++;
-        if (CountR3 == 26)
+        if (CountR3 == 26) // Spins second Rotor 2 onece Rotor 3 gets to A
         {
             CountR3 = 0;
             Rotor2Spin();
             CountR2 ++;
         }
-        if (CountR2 == 26)
+        if (CountR2 == 26) // Spins second Rotor 1 once Rotor 2 gets to A
         {
             CountR2 = 0;
             Rotor1Spin();
         }
     }
+    fprintf(file, "\n");
+    fclose(file);
     printf("\n");
 }
