@@ -1,15 +1,19 @@
 /************************************************************
-*  Most Complete Version DO NOT edit to test things, make a copy
 *
 *  File: EnigmaMachine.c
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.50 (Mar 27, 2023)
+*  Version: 0.90 (Mar 28, 2023)
 *
 *  Purpose:
-*            Take A message and encrypt the message so that you can enter
+*            Take A message and encrypt the message so that you can enter 
 *            that same encrypted message you received can dycrypt your message.
 *            Makes use of three hardwired rotors to encrypt and decrypt messages
 *            and at the same time the same input will not be the same output.
+*     
+*
+*  Note: When compiling use - std=c99
+*
+*        
 *
 *
 * References:
@@ -28,7 +32,6 @@
 *          °https://docs.google.com/spreadsheets/d/e/2PACX-1vRmON5SRXPrnoQghaJSrhbBFFNYLnJjPQOt1hKbfr99q6gwbxfU4B8qUEQg2Z-3A3x3OpXpFWCoSvqL/pubhtml
 *
 *
-*  Note: When compiling use - std=c99
 *************************************************************/
 
 #include <stdio.h>
@@ -67,7 +70,7 @@ void string_formatter(char *message)
     }
 }
 
-void InputMessage()
+void InputMessage() // Takes Input from user for each rotor and message and encrypts it into file I/O
 {
     FILE* file=fopen("EnigmaTranscript.txt","a");
     int Message_Length;
@@ -83,6 +86,7 @@ void InputMessage()
         string_formatter(&RotorPointer[i]);
         fprintf(file, "ROTOR %d: %c\n", i+1, RotorPointer[i]);
     }
+    fprintf(file, "\n");
     // Sets Rotors at the begining
     SetRotors(RotorPointer[0], RotorPointer[1], RotorPointer[2]);
 
@@ -93,10 +97,10 @@ void InputMessage()
     fgets(Message, 1000, stdin);
     string_formatter(Message);
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
-
     fprintf(file, "ENCRYPTED:\n\n");
+    fclose(file);
     MessageEncryption(Message, RotorPointer[2], RotorPointer[1]);
-
+    
 }
 
 int main()
@@ -110,13 +114,7 @@ int main()
         if (Choice == 'Y')
         {
             InputMessage();
-            for (int j = 0; j < 3; j++)
-            {
-                for (int i = 0; i <= 26; i++)
-                {
-                RotorPath[j][i] = RotorReset[j][i];
-                }
-            }
+            ResetRotors();
         }
     }   
   return 0;
