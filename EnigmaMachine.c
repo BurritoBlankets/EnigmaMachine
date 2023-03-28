@@ -67,9 +67,8 @@ void string_formatter(char *message)
     }
 }
 
-int main()
+void InputMessage()
 {
-
     FILE* file=fopen("EnigmaTranscript.txt","a");
     int Message_Length;
     char Message[1000], temp, RotorPointer[3];
@@ -96,7 +95,29 @@ int main()
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
 
     fprintf(file, "ENCRYPTED:\n\n");
-    MessageEncryption(Message);
+    MessageEncryption(Message, RotorPointer[2], RotorPointer[1]);
 
+}
+
+int main()
+{
+    char Choice;
+    while (Choice != 'N')
+    {
+        printf("Would you like to encode a message? (Y/N) ");
+        scanf(" %c", &Choice);
+        Choice = toupper(Choice);
+        if (Choice == 'Y')
+        {
+            InputMessage();
+            for (int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i <= 26; i++)
+                {
+                RotorPath[j][i] = RotorReset[j][i];
+                }
+            }
+        }
+    }   
   return 0;
 }
