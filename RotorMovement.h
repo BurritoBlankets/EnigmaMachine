@@ -2,14 +2,13 @@
 *
 *  File: RotorMovement.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.10 (Mar 22, 2023)
-*
-*  Purpose:
+*  Version: 1.0 (Mar 22, 2023)
+*  
+*  Purpose: 
 *            A file of multiple functions that will store the rotor order and
 *            various functions that will be used frequently in main file.
-*
+*             
 *************************************************************/
-
 #pragma once
 #include <stdio.h>
 #include <string.h>
@@ -22,35 +21,35 @@ void PrintRotor(int j) // Prints what Current Rotor is -- For Debugging
             printf("\n");
 }
 
-void Rotor3Spin() // Spins Rotor 1 once
+void Rotor3Spin() // Spins Rotor 3 once
 {
-    char *store;
+    char *store;    
     store = RotorPath[0][25];
         for (int i = 25; i > 0; i--)
         {
             RotorPath[0][i] = RotorPath[0][i-1];
         }
-    RotorPath[0][0] = store;
+    RotorPath[0][0] = store; 
 }
 void Rotor2Spin() // Spins Rotor 2 once
 {
-    char *store;
+    char *store;  
     store = RotorPath[1][25];
         for (int i = 25; i > 0; i--)
         {
             RotorPath[1][i] = RotorPath[1][i-1];
         }
-    RotorPath[1][0] = store;
+    RotorPath[1][0] = store;    
 }
-void Rotor1Spin() // Spins Rotor 3 once
+void Rotor1Spin() // Spins Rotor 1 once
 {
-    char *store;
+    char *store;    
     store = RotorPath[2][25];
         for (int i = 25; i > 0; i--)
         {
             RotorPath[2][i] = RotorPath[2][i-1];
         }
-    RotorPath[2][0] = store;
+    RotorPath[2][0] = store;    
 }
 
 void SetRotors(int R1,int R2,int R3) // Takes user input and spins the rotors to the correct amount of times before the message is recieved
@@ -70,4 +69,4 @@ void SetRotors(int R1,int R2,int R3) // Takes user input and spins the rotors to
         Rotor3Spin();
     }
 }
-
+ 
