@@ -3,18 +3,20 @@
 *  File: MessageEncryption.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
 *  Version: 0.20(Mar 24, 2023)
-*  
-* Purpose: 
-*            Contains the function to encrypt and decrypt messages. 
+*
+* Purpose:
+*            Contains the function to encrypt and decrypt messages.
 *
 *
 *************************************************************/
+#pragma once
 #include <stdio.h>
 #include <string.h>
 #include "RotorMovement.h"
 
 void CharacterEncryption(int input) //Function to send a character through the rotors and back and receive decrypted character
 {
+    char encrypted_message_string[1000];
     int temp;
     temp = input;
     for (int i = 0; i <= 3; i++)
@@ -35,9 +37,10 @@ void CharacterEncryption(int input) //Function to send a character through the r
         }
 
     }
+
     FILE* file=fopen("EnigmaTranscript.txt","a");
+
     printf("%c", temp + 65);
-    fprintf(file, "%c", temp + 65);
 
 }
 
@@ -57,13 +60,13 @@ void MessageEncryption(char *Message)
         Count1++;
         if (Count1 == 26)
         {
-            Count1 == 0;
+            Count1 = 0;
             Rotor2Spin();
             Count2 ++;
         }
         if (Count2 == 26)
         {
-            Count2 == 0;
+            Count2 = 0;
             Rotor1Spin();
         }
     }

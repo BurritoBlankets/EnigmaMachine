@@ -14,6 +14,7 @@
 *        "MESSY CODE THAT WORKS"
 *************************************************************/
 
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -24,7 +25,9 @@ char *RotorPath[4][26] = {
         {"F", "A", "C", "X", "V", "R", "M", "S", "U", "O", "Y", "T", "N", "I", "H", "D", "L", "E", "G", "W", "J", "K", "P", "Q", "Z", "B"},  //Rotor 3
         {"K", "C", "L", "Q", "M", "S", "W", "H", "T", "J", "D", "N", "V", "O", "U", "X", "P", "G", "F", "A", "B", "E", "Y", "R", "Z", "I"},  //Rotor 2
         {"K", "T", "N", "O", "R", "G", "Q", "L", "F", "D", "V", "P", "X", "W", "C", "E", "I", "Y", "M", "U", "Z", "S", "J", "A", "H", "B"},  //Rotor 1
-        {"I", "L", "W", "Z", "F", "E", "S", "X", "A", "O", "U", "B", "R", "Y", "J", "V", "T", "M", "G", "Q", "K", "P", "C", "H", "N", "D"}}; // Reflector
+        {"I", "L", "W", "Z", "F", "E", "S", "X", "A", "O", "U", "B", "R", "Y", "J", "V", "T", "M", "G", "Q", "K", "P", "C", "H", "N", "D"}
+}; // Reflector
+
 
 void string_formatter(char *message)
 {
@@ -74,6 +77,7 @@ void Rotor3Spin() // Spins Rotor 1 once
         }
     RotorPath[0][0] = store;
 }
+
 void Rotor2Spin() // Spins Rotor 2 once
 {
     char *store;
@@ -84,6 +88,7 @@ void Rotor2Spin() // Spins Rotor 2 once
         }
     RotorPath[1][0] = store;
 }
+
 void Rotor1Spin() // Spins Rotor 3 once
 {
     char *store;
@@ -186,11 +191,9 @@ int main()
         string_formatter(&RotorPointer[i]);
         fprintf(file, "ROTOR %d: %c\n", i+1, RotorPointer[i]);
     }
-    R1=RotorPointer[0];
-    R2=RotorPointer[1];
-    R3=RotorPointer[2];
-    
-    SetRotors(R1, R2, R3);
+
+    SetRotors( RotorPointer[0], RotorPointer[1], RotorPointer[2]);
+
 
 
     printf("MESSAGE: ");
@@ -200,9 +203,8 @@ int main()
     string_formatter(Message);
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
 
-    fprintf(file, "ENCRYPTED:\n%s\n,");
+    fprintf(file, "ENCRYPTED:\n\n,");
 
-/////////////////////Message Encryptor/////////////////////    
     MessageEncryption(Message);
     printf("\n");
   return 0;
