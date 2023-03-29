@@ -70,6 +70,39 @@ void string_formatter(char *message)
     }
 }
 
+void InputMessageSteps()
+{
+    FILE* file=fopen("EnigmaTranscript.txt","a");
+    int Message_Length;
+    char Message[1000], temp, RotorPointer[3];
+    //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
+
+
+    fprintf(file, "\n");
+    for( int i = 0; i <= 2; i++ )
+    {
+        printf("Set rotor %d position (A-Z): ",i+1);
+        fscanf(stdin, " %s",&RotorPointer[i]);
+        string_formatter(&RotorPointer[i]);
+        fprintf(file, "ROTOR %d: [%c]\n", i+1, RotorPointer[i]);
+    }
+    fprintf(file, "\n");
+    // Sets Rotors at the begining
+    SetRotors(RotorPointer[0], RotorPointer[1], RotorPointer[2]);
+
+    // User Inputs Message:
+    printf("MESSAGE: ");
+
+    scanf("%c",&temp); // temp statement to clear buffer
+    fgets(Message, 1000, stdin);
+    string_formatter(Message);
+    fprintf(file, "UNENCRYPTED:\n%s\n", Message);
+    fprintf(file, "ENCRYPTED:\n");
+    fclose(file);
+    MessageEncryptionSteps(Message, RotorPointer[2], RotorPointer[1], RotorPointer[0]);
+    printf("\n");
+}
+
 void InputMessage() // Takes Input from user for each rotor and message and encrypts it into file I/O
 {
     FILE* file=fopen("EnigmaTranscript.txt","a");
@@ -105,7 +138,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
 
 int main()
 {
-    char Choice;
+    char Choice, Steps;
     while (Choice != 'N')
     {
         printf("Would you like to encode a message? (Y/N) ");
@@ -113,8 +146,19 @@ int main()
         Choice = toupper(Choice);
         if (Choice == 'Y')
         {
-            InputMessage();
-            ResetRotors();
+            printf("Would you like to see the steps to the encoded message? (Y/N) ");
+            scanf(" %c", &Steps);
+            Steps = toupper(Steps);
+            if (Steps != 'Y')
+            {
+                InputMessage();
+                ResetRotors();
+            }
+            else 
+            {
+                InputMessageSteps();
+                ResetRotors();
+            }
         }
     }   
   return 0;
