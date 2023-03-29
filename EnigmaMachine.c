@@ -97,7 +97,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
     fgets(Message, 1000, stdin);
     string_formatter(Message);
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
-    fprintf(file, "ENCRYPTED:\n\n");
+    fprintf(file, "ENCRYPTED:\n");
     fclose(file);
     MessageEncryption(Message, RotorPointer[2], RotorPointer[1]);
     
