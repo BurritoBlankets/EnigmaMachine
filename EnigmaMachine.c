@@ -78,7 +78,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
     //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
 
 
-    fprintf(file, "\n");
+    fprintf(file, "\n-------------------------------------\n");
     for( int i = 0; i <= 2; i++ )
     {
         printf("Set rotor %d position (A-Z): ",i+1);
@@ -111,7 +111,7 @@ void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryp
     //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
 
 
-    fprintf(file, "\n");
+    fprintf(file, "\n-------------------------------------\n");
     for( int i = 0; i <= 2; i++ )
     {
         printf("Set rotor %d position (A-Z): ",i+1);
@@ -119,7 +119,6 @@ void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryp
         string_formatter(&RotorPointer[i]);
         fprintf(file, "ROTOR %d: [%c]\n", i+1, RotorPointer[i]);
     }
-    fprintf(file, "\n");
     // Sets Rotors at the begining
     SetRotors(RotorPointer[0], RotorPointer[1], RotorPointer[2]);
 
