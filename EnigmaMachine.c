@@ -2,7 +2,7 @@
 *
 *  File: EnigmaMachine.c
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 0.90 (Mar 28, 2023)
+*  Version: 0.95 (Mar 29, 2023)
 *
 *  Purpose:
 *            Take A message and encrypt the message so that you can enter 
