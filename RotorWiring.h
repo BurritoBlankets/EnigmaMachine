@@ -1,4 +1,4 @@
-/************************************************************
+//************************************************************
 *
 *  File: RotorWiring.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
@@ -6,6 +6,8 @@
 *  
 *  Purpose: 
 *            Set hard coded rotors.
+*
+*  Credit: Jake Klinger, Tyler Bruno
 *
 *************************************************************/
 #pragma once
