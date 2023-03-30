@@ -2,15 +2,16 @@
 *
 *  File: RotorMovement.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 1.0 (Mar 24, 2023)
+*  Version: 1.0 (Mar 22, 2023)
 *  
 *  Purpose: 
 *            A file of multiple functions that will store the rotor order and
 *            various functions that will be used frequently in main file.
 *
-*  Credit: Tyler Bruno
+*  Credit: Tyler Bruno, Jose (Pillo) Duenas-Lopez
 *             
 *************************************************************/
+
 #pragma once
 #include <stdio.h>
 #include <string.h>
