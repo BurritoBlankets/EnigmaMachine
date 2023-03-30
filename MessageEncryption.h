@@ -2,7 +2,7 @@
 *
 *  File: MessageEncryption.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 1.0(Mar 30, 2023)
+*  Version: 1.0(Mar 28, 2023)
 *  
 * Purpose: 
 *            Contains the function to encrypt and decrypt messages. 
@@ -16,17 +16,16 @@
 #include <string.h>
 #include "RotorMovement.h"
 
-char CharacterEncryption(int input) //Function to send a character through the rotors and back and receive decrypted character
+char CharacterEncryption(int Input) //Function to send a character through the rotors and back and receive decrypted character
 {
     // Character -> 3 -> 2 -> 1 -> Reflector -> 1 -> 2 -> 3 -> Encrypted Character
     int temp;
-    temp = input;
+    temp = Input;
     for (int i = 0; i <= 3; i++) 
     {
         temp = * RotorPath[i][temp] - 65;
 
     }
-
     for (int j = 2; j >= 0; j--)
     {
         for(int i = 0; i < 26; i++)
@@ -87,7 +86,6 @@ char CharacterEncryptionSteps(int input) //Function to return step by step encry
         printf("%c -> " , temp + 65);
         temp = * RotorPath[i][temp] - 65; 
     }
-
     for (int j = 2; j >= 0; j--)
     {
         for(int i = 0; i < 26; i++)
