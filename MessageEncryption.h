@@ -2,11 +2,12 @@
 *
 *  File: MessageEncryption.h
 *  Author:  Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
-*  Version: 1.0(Mar 28, 2023)
+*  Version: 1.0(Mar 30, 2023)
 *  
 * Purpose: 
 *            Contains the function to encrypt and decrypt messages. 
 *
+*  Credit: Jake Klinger, Jose (Pillo) Duenas-Lopez, Tyler Bruno
 *
 *************************************************************/
 
@@ -41,21 +42,21 @@ char CharacterEncryption(int input) //Function to send a character through the r
     return temp;
 }
 
-char MessageEncryption(char *Message, char R3,  char R2)
+void MessageEncryption(char *Message, char R3,  char R2)
 {
     FILE* file=fopen("EnigmaTranscript.txt","a");
-    int Message_Length = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65;
+    int MessageLength = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65;
     char EncryptedMessage[1000];
     // Finds Length of the input message
     for(int i = 0; Message[i] != '\0'; i++)
     {
-        Message_Length++;
+        MessageLength++;
     }
     //Encrypts or Decrypts the message the user input
-    for(int i = 0; i < Message_Length; i++)
+    for(int i = 0; i < MessageLength; i++)
     {
         EncryptedMessage[i] = CharacterEncryption(Message[i] - 65);
-        printf("%c", EncryptedMessage[i]);
+        printf("\033[0;36m%c\033[0;37m", EncryptedMessage[i]);
         fprintf(file, "%c", EncryptedMessage[i]);
         Rotor3Spin();
         CountR3++;
@@ -78,7 +79,6 @@ char MessageEncryption(char *Message, char R3,  char R2)
 
 char CharacterEncryptionSteps(int input) //Function to return step by step encryption
 {
-
     // Character -> 3 -> 2 -> 1 -> Reflector -> 1 -> 2 -> 3 -> Encrypted Character
     int temp;
     temp = input;
@@ -100,26 +100,27 @@ char CharacterEncryptionSteps(int input) //Function to return step by step encry
             }
         }
     }
-    printf("Output is: [%c] ", temp +65);
+    printf("Output is: ");
+    printf("\033[0;36m [%c]", temp +65);
     temp = temp + 65;
     return temp;
 }
-
 void MessageEncryptionSteps(char *Message, char R3,  char R2, char R1) // Coupled with step by step encryption
 {
     FILE* file=fopen("EnigmaTranscript.txt","a");
-    int Message_Length = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65, CountR1 = R1 - 65;
+    int MessageLength = 0, CountR3 = R3 - 65 , CountR2 = R2 - 65, CountR1 = R1 - 65;
     char EncryptedMessage[1000];
     // Finds Length of the input message
     for(int i = 0; Message[i] != '\0'; i++)
     {
-        Message_Length++;
+        MessageLength++;
     }
     //Encrypts or Decrypts the message the user input
-    for(int i = 0; i < Message_Length; i++)
+    for(int i = 0; i < MessageLength; i++)
     {
         EncryptedMessage[i] = CharacterEncryptionSteps(Message[i] - 65);
-        printf("at rotor positons [%c%c%c]\n", CountR1 + 65, CountR2 + 65, CountR3 + 65);
+        printf("\033[0;37m at rotor positons ");
+        printf("\033[0;36m [%c%c%c]\n\033[0;37m", CountR1 + 65, CountR2 + 65, CountR3 + 65);
         fprintf(file, "%c", EncryptedMessage[i]);
         Rotor3Spin();
         CountR3++;
