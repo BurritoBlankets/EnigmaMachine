@@ -41,9 +41,9 @@
 
 
 
-void string_formatter(char *message)
+void StringFormatter(char *message)
 {
-    int new_total_index = 0;
+    int NewTotalIndex = 0;
     //var used to reformat string array, whatever value assigned after the for
     //loop will be the new total number of indices in the string array
 
@@ -53,11 +53,11 @@ void string_formatter(char *message)
     {
         if (0 != isalpha(message[i]))
         {
-            message[new_total_index] = message[i];
-            new_total_index++;
+            message[NewTotalIndex] = message[i];
+            NewTotalIndex++;
         }
     }
-    message[new_total_index] = '\0';
+    message[NewTotalIndex] = '\0';
     //appends null character to end of reformated string
 
     //Makes all letters uppercase
@@ -83,7 +83,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
     {
         printf("Set rotor %d position (A-Z): ",i+1);
         fscanf(stdin, " %s",&RotorPointer[i]);
-        string_formatter(&RotorPointer[i]);
+        StringFormatter(&RotorPointer[i]);
         fprintf(file, "ROTOR %d: [%c]\n", i+1, RotorPointer[i]);
     }
     fprintf(file, "\n");
@@ -95,7 +95,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
 
     scanf("%c",&temp); // temp statement to clear buffer
     fgets(Message, 1000, stdin);
-    string_formatter(Message);
+    StringFormatter(Message);
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
     fprintf(file, "ENCRYPTED:\n");
     fclose(file);
@@ -116,7 +116,7 @@ void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryp
     {
         printf("Set rotor %d position (A-Z): ",i+1);
         fscanf(stdin, " %s",&RotorPointer[i]);
-        string_formatter(&RotorPointer[i]);
+        StringFormatter(&RotorPointer[i]);
         fprintf(file, "ROTOR %d: [%c]\n", i+1, RotorPointer[i]);
     }
     // Sets Rotors at the begining
@@ -127,7 +127,7 @@ void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryp
 
     scanf("%c",&temp); // temp statement to clear buffer
     fgets(Message, 1000, stdin);
-    string_formatter(Message);
+    StringFormatter(Message);
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
     fprintf(file, "ENCRYPTED:\n");
     fclose(file);
