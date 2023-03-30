@@ -13,7 +13,7 @@
 *
 *  Note: When compiling use - std=c99
 *
-* References:
+*  References:
 *          How The Enigma Works:
 *          °https://www.101computing.net/enigma/enigma-instructions.html
 *          °https://www.theguardian.com/technology/2014/nov/14/how-did-enigma-machine-work-imitation-game
@@ -65,12 +65,13 @@ void StringFormatter(char *Message)
 
 void InputMessage() // Takes Input from user for each rotor and message and encrypts it into file I/O
 {
-    FILE* file=fopen("EnigmaTranscript.txt","a");
     int Message_Length;
     char Message[1000], temp, RotorPointer[3];
-    //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
-
+    
+    FILE* file=fopen("EnigmaTranscript.txt","a");
     fprintf(file, "\n-------------------------------------\n");
+    
+    //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
     for( int i = 0; i <= 2; i++ )
     {
         printf("Set rotor %d position (A-Z): ",i+1);
@@ -90,6 +91,7 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
     fgets(Message, 1000, stdin);
     StringFormatter(Message);
     
+    //Prints to EnigmaTranscript.txt
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
     fprintf(file, "ENCRYPTED:\n");
     fclose(file);
@@ -99,12 +101,13 @@ void InputMessage() // Takes Input from user for each rotor and message and encr
 
 void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryption
 {
-    FILE* file=fopen("EnigmaTranscript.txt","a");
     int Message_Length;
     char Message[1000], temp, RotorPointer[3];
-    //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
 
+    FILE* file=fopen("EnigmaTranscript.txt","a");
     fprintf(file, "\n-------------------------------------\n");
+    
+    //Rotor positions (1-3), User Message Var, temporary value which aids in reading user input
     for( int i = 0; i <= 2; i++ )
     {
         printf("Set rotor %d position (A-Z): ",i+1);
@@ -123,6 +126,7 @@ void InputMessageSteps() //Calls MessageEncryptionSteps opposed to MessageEncryp
     scanf("%c",&temp); // temp statement to clear buffer
     fgets(Message, 1000, stdin);
     StringFormatter(Message);
+    
     //Prints to EnigmaTranscript.txt
     fprintf(file, "UNENCRYPTED:\n%s\n", Message);
     fprintf(file, "ENCRYPTED:\n");
@@ -156,5 +160,5 @@ int main()
             }
         }
     }   
-  return 0;
+    return 0;
 }
